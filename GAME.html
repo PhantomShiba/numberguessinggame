@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" href="GAME.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./test-tube.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+
+ <body>
+<div id="UI">
+    <h1>
+        <div id="title">
+            <a style ="color:#fefea4;  ; font-size: 40px;"> Trò chơi đoán số </a>
+        </div>
+    </h1>
+   
+    <div id="form">
+        <input placeholder="Hay doan mot so" id="inputNum" />
+    </div>
+
+    <div id="result"> 
+        <p id = "lbResult"></p> <a style ="color:  #78c2c3 ; font-size: 30px;"> Kết quả : </a>
+    </div> 
+   
+    <div id="reset" >
+        <span id="btResetGame" style="color: #e4f1fe; font-size: 20px ">Reset game</span>
+    </div>  
+        
+
+
+   
+</div>           
+        <script>
+            let btResetGame = document.getElementById("btResetGame");
+            let inputNum = document.getElementById("inputNum");
+            let lbResult = document.getElementById("lbResult");
+            
+            let randomNumber = 0; //
+            let live = 5;
+    
+            function newGame()
+            {
+                randomNumber= Math.floor(Math.random() * 100)+1;
+                live = 5;
+                console.log("Trò chơi mới đã được tạo: ", randomNumber);
+            }
+           
+            btResetGame.onclick = newGame;
+ 
+            inputNum.onkeypress = (key) => {
+                if (live == 0) {
+                    return;
+                }
+                if (key.code == "Enter") {
+                    console.log("Gửi thông tin kết quả");
+                    let guessNum = parseInt(inputNum.value);
+                    console.log(guessNum);
+                    inputNum.valve = " ";
+                
+                    if(guessNum == randomNumber){
+                        lbResult.innerText = "Bạn đã đoán đúng rồi" + randomNumber;
+                    } else if(guessNum < randomNumber){
+                        lbResult.innerText = "Số của bạn nhỏ hơn so với số đã chọn";
+                    } else {
+                        lbResult.innerText = "Số của bạn lớn hơn so với số đã chọn";
+                    }
+                    live--;
+                    if (live == 0) {
+                        lbResult.innerText ="Rất tiếc bạn đã bị con mèo";
+                    }
+            }
+        }
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
